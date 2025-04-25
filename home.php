@@ -59,44 +59,63 @@
             <div class="product-img">
                 <img src="https://down-vn.img.susercontent.com/file/a740cc999ebc78acde421864a7258777.webp" alt="Son MAC chính hãng">
 
-                <span class="badge discount">-30%</span>
+                <span class="badge discount">-33%</span>
             </div>
             <div class="product-info">
-                <h3 class="product-title">Serum dưỡng trắng</h3>
+                <h3 class="product-title">Sữa Rửa Mặt Ý Dĩ Hatomugi nội địa Nhật Bản 130g 170g giúp da trắng sáng</h3>
                 <div class="price">
-                    <span class="old-price">350.000đ</span>
-                    <span class="new-price">245.000đ</span>
+                    <span class="old-price">60.000đ</span>
+                    <span class="new-price">40.000đ</span>
                 </div>
                 <div class="extra-info">
-                    <span class="rating">⭐ 4.9 | Đã bán 4.2k</span>
-                    <span class="location">TP.HCM</span>
+                    <span class="rating">⭐ 4.9 | Đã bán 55.2k</span>
+                    <span class="location">Bắc Giang</span>
                 </div>
                 <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                <button class="add-to-cart" onclick="openCartModal('Sữa Rửa Mặt Ý Dĩ Hatomugi nội địa Nhật Bản 130g 170g giúp da trắng sáng', '185000', 'https://down-vn.img.susercontent.com/file/a740cc999ebc78acde421864a7258777.webp')">
+                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                    <form method="POST" action="checkout.php">
+                        <input type="hidden" name="product_name" value="Sữa Rửa Mặt Ý Dĩ Hatomugi nội địa Nhật Bản 130g 170g giúp da trắng sáng">
+                        <input type="hidden" name="product_price" value="185000">
+                        <input type="hidden" name="product_option" value="130 trắng">
+                        <input type="hidden" name="product_qty" value="1" min = "1">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/a740cc999ebc78acde421864a7258777.webp">
+                        <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                    </form>
                 </div>
-
-            </div>
+            </div>     
         </div>
 
+      
+      
         <div class="product-card">
             <div class="product-img">
                 <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmeejqn0w5wf97.webp" alt="Sản phẩm dưỡng da">
                 <span class="badge discount">-20%</span>
             </div>
             <div class="product-info">
-                <h3 class="product-title">Kem dưỡng ban đêm</h3>
+                <h3 class="product-title">Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường, da khô</h3>
                 <div class="price">
-                    <span class="old-price">420.000đ</span>
-                    <span class="new-price">336.000đ</span>
+                    <span class="old-price">110.000đ</span>
+                    <span class="new-price">88.000đ</span>
                 </div>
                 <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
+                    <span class="rating">⭐ 4.9 | Đã bán 10.3k</span>
+                    <span class="location">Hà Nội</span>
                 </div>
                 <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                <button class="add-to-cart" onclick="openCartModal('Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường, da khô', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmeejqn0w5wf97.webp')">
+                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                    <form method="POST" action="checkout.php">
+                        <input type="hidden" name="product_name" value="Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường, da khô">
+                        <input type="hidden" name="product_price" value="185000">
+                        <input type="hidden" name="product_option" value="130 trắng">
+                        <input type="hidden" name="product_qty" value="1" min = "1">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmeejqn0w5wf97.webp">
+                        <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -106,488 +125,61 @@
         <div class="product-card">
             <div class="product-img">
                 <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m80pob388y9z91.webp" alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-20%</span>
+                <span class="badge discount">-47%</span>
             </div>
             <div class="product-info">
-                <h3 class="product-title">Kem dưỡng ban đêm</h3>
+                <h3 class="product-title">Serum Phục Hồi Da Sáng Khỏe Sau Mụn Tia'M Vita B3 Source 40Ml </h3>
                 <div class="price">
-                    <span class="old-price">420.000đ</span>
-                    <span class="new-price">336.000đ</span>
+                    <span class="old-price">559.000đ</span>
+                    <span class="new-price">295.000đ</span>
                 </div>
                 <div class="extra-info">
                     <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
                     <span class="location">Hồ Chí Minh</span>
                 </div>
                 <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src="https://down-vn.img.susercontent.com/file/vn-11134201-7ras8-m1hzy5ps272r21" alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                    <button class="buy-now"><i class="fas fa-credit-card"></i> Mua ngay</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="product-img">
-                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
-            </div>
-            <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
-                <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
-                </div>
-                <div class="extra-info">
-                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
-                    <span class="location">Hồ Chí Minh</span>
-                </div>
-                <div class="product-actions">
-                    <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+                <button class="add-to-cart" onclick="openCartModal('Serum Phục Hồi Da Sáng Khỏe Sau Mụn TiaM Vita B3 Source 40Ml ', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m80pob388y9z91.webp')">
+                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
                     <form method="POST" action="checkout.php">
-                        <input type="hidden" name="product_name" value="Son Tint lì cho môi căng mọc Hàn Quốc Romand">
+                        <input type="hidden" name="product_name" value="Serum Phục Hồi Da Sáng Khỏe Sau Mụn Tia'M Vita B3 Source 40Ml ">
                         <input type="hidden" name="product_price" value="185000">
                         <input type="hidden" name="product_option" value="130 trắng">
                         <input type="hidden" name="product_qty" value="1" min = "1">
-                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134201-7ras8-m1hzy5ps272r21">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m80pob388y9z91.webp">
+                        <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="product-card">
+            <div class="product-img">
+                <img src=https://down-vn.img.susercontent.com/file/sg-11134201-7rfhg-m3kh553myq7bc8 alt="Sản phẩm dưỡng da">
+                <span class="badge discount">-45%</span>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Bảng phấn mắt nhũ tương 8 hình trái tim có điểm nổi bật nhũ tương, Bảng phấn mắt 3in1 với má hồng</h3>
+                <div class="price">
+                    <span class="old-price">66.000</span>
+                    <span class="new-price">36.300đ</span>
+                </div>
+                <div class="extra-info">
+                    <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
+                    <span class="location">Hồ Chí Minh</span>
+                </div>
+                <div class="product-actions">
+                <button class="add-to-cart" onclick="openCartModal('Bảng phấn mắt nhũ tương 8 hình trái tim có điểm nổi bật nhũ tương, Bảng phấn mắt 3in1 với má hồng', '36300', 'https://down-vn.img.susercontent.com/file/sg-11134201-7rfhg-m3kh553myq7bc8')">
+                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                    <form method="POST" action="checkout.php">
+                        <input type="hidden" name="product_name" value="Bảng phấn mắt nhũ tương 8 hình trái tim có điểm nổi bật nhũ tương, Bảng phấn mắt 3in1 với má hồng">
+                        <input type="hidden" name="product_price" value="185000">
+                        <input type="hidden" name="product_option" value="130 trắng">
+                        <input type="hidden" name="product_qty" value="1" min = "1">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/sg-11134201-7rfhg-m3kh553myq7bc8">
                         <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                     </form>
                 </div>
@@ -596,29 +188,187 @@
 
         <div class="product-card">
             <div class="product-img">
-                <img src="https://down-vn.img.susercontent.com/file/vn-11134201-7ras8-m1hzy5ps272r21" alt="Sản phẩm dưỡng da">
-                <span class="badge discount">-46%</span>
+                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
+                <span class="badge discount">-4%</span>
             </div>
             <div class="product-info">
-                <h3 class="product-title">Son Tint lì cho môi căng mọc Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
+                <h3 class="product-title">Tinh Chất oh!oh! Skin Health Serum (with 20% Niacinamide & 2% Acetyl Glucosamine) (10ml - 30ml)</h3>
                 <div class="price">
-                    <span class="old-price">344.000</span>
-                    <span class="new-price">185.000đ</span>
+                    <span class="old-price">325.000đ</span>
+                    <span class="new-price">311.000đ</span>
+                </div>
+                <div class="extra-info">
+                    <span class="rating">⭐ 4.8 | Đã bán 12.3k</span>
+                    <span class="location">Hồ Chí Minh</span>
+                </div>
+                <div class="product-actions">
+                <button class="add-to-cart" onclick="openCartModal('Tinh Chất oh!oh! Skin Health Serum (with 20% Niacinamide & 2% Acetyl Glucosamine) (10ml - 30ml)', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9')">
+                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                    <form method="POST" action="checkout.php">
+                        <input type="hidden" name="product_name" value="Tinh Chất oh!oh! Skin Health Serum (with 20% Niacinamide & 2% Acetyl Glucosamine) (10ml - 30ml)">
+                        <input type="hidden" name="product_price" value="185000">
+                        <input type="hidden" name="product_option" value="130 trắng">
+                        <input type="hidden" name="product_qty" value="1" min = "1">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9">
+                        <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img">
+                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8lkwxcx3ix3fe alt="Sản phẩm dưỡng da">
+                <span class="badge discount">-60%</span>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Son Tint lì cho môi căng mọng Hàn Quốc Romand Juicy Lasting Tint 5.5g</h3>
+                <div class="price">
+                    <span class="old-price">419.000đ</span>
+                    <span class="new-price">269.000đ</span>
                 </div>
                 <div class="extra-info">
                     <span class="rating">⭐ 4.8 | Đã bán 2.3k</span>
                     <span class="location">Hồ Chí Minh</span>
                 </div>
                 <div class="product-actions">
-                    <button class="add-to-cart" onclick="openCartModal('Son Tint lì cho môi căng mọc Hàn Quốc Romand', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134201-7ras8-m1hzy5ps272r21')">
+                <button class="add-to-cart" onclick="openCartModal('Son bóng dưỡng môi bắt sáng 3CE Shine Reflector 1.7g', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8lkwxcx3ix3fe')">
                         <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                     </button>
                     <form method="POST" action="checkout.php">
-                        <input type="hidden" name="product_name" value="Son Tint lì cho môi căng mọc Hàn Quốc Romand">
+                        <input type="hidden" name="product_name" value="Son bóng dưỡng môi bắt sáng 3CE Shine Reflector 1.7g">
                         <input type="hidden" name="product_price" value="185000">
                         <input type="hidden" name="product_option" value="130 trắng">
                         <input type="hidden" name="product_qty" value="1" min = "1">
-                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134201-7ras8-m1hzy5ps272r21">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8lkwxcx3ix3fe">
+                        <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img">
+                <img src=https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8cwtleitrgkb7 alt="Sản phẩm dưỡng da">
+                <span class="badge discount">-20%</span>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Gel Mờ Sẹo Và Vết Thâm Scar Care Acnes 12Gr</h3>
+                <div class="price">
+                    <span class="old-price">82.000đ</span>
+                    <span class="new-price">65.600đ</span>
+                </div>
+                <div class="extra-info">
+                    <span class="rating">⭐ 4.8 | Đã bán 8.3k</span>
+                    <span class="location">Phú Thọ 2</span>
+                </div>
+                <div class="product-actions">
+                <button class="add-to-cart" onclick="openCartModal('Gel Mờ Sẹo Và Vết Thâm Scar Care Acnes 12Gr', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8cwtleitrgkb7')">
+                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                    <form method="POST" action="checkout.php">
+                        <input type="hidden" name="product_name" value="Gel Mờ Sẹo Và Vết Thâm Scar Care Acnes 12Gr">
+                        <input type="hidden" name="product_price" value="185000">
+                        <input type="hidden" name="product_option" value="130 trắng">
+                        <input type="hidden" name="product_qty" value="1" min = "1">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8cwtleitrgkb7">
+                        <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img">
+                <img src=https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8y6psofy1kyad alt="Sản phẩm dưỡng da">
+                <span class="badge discount">-46%</span>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Nước Tẩy Trang làm sạch sâu dịu nhẹ cho mọi loại da - Garnier Micellar Cleansing Water 400ml</h3>
+                <div class="price">
+                    <span class="old-price">398.000</span>
+                    <span class="new-price">254.000đ</span>
+                </div>
+                <div class="extra-info">
+                    <span class="rating">⭐ 4.8 | Đã bán 6.3k</span>
+                    <span class="location">Hồ Chí Minh</span>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart" onclick="openCartModal('Nước Tẩy Trang làm sạch sâu dịu nhẹ cho mọi loại da - Garnier Micellar Cleansing Water 400ml', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8y6psofy1kyad')">
+                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                    <form method="POST" action="checkout.php">
+                        <input type="hidden" name="product_name" value="Nước Tẩy Trang làm sạch sâu dịu nhẹ cho mọi loại da - Garnier Micellar Cleansing Water 400ml">
+                        <input type="hidden" name="product_price" value="185000">
+                        <input type="hidden" name="product_option" value="130 trắng">
+                        <input type="hidden" name="product_qty" value="1" min = "1">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8y6psofy1kyad">
+                        <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+       
+       
+       
+        <div class="product-card">
+            <div class="product-img">
+                <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26fczqyqdgydf alt="Sản phẩm dưỡng da">
+                <span class="badge discount">-46%</span>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Combo Simple Cho Da Nhạy Cảm - Nước Tẩy Trang (NTT), Sữa Rửa Mặt (SRM), Toner, Kem Dưỡng (KD)</h3>
+                <div class="price">
+                    <span class="old-price">240.000</span>
+                    <span class="new-price">120.000đ</span>
+                </div>
+                <div class="extra-info">
+                    <span class="rating">⭐ 4.8 | Đã bán 2.0k</span>
+                    <span class="location">Hồ Chí Minh</span>
+                </div>
+                <div class="product-actions">
+                <button class="add-to-cart" onclick="openCartModal('Combo Simple Cho Da Nhạy Cảm - Nước Tẩy Trang (NTT), Sữa Rửa Mặt (SRM), Toner, Kem Dưỡng (KD)', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26fczqyqdgydf')">
+                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                    <form method="POST" action="checkout.php">
+                        <input type="hidden" name="product_name" value="Combo Simple Cho Da Nhạy Cảm - Nước Tẩy Trang (NTT), Sữa Rửa Mặt (SRM), Toner, Kem Dưỡng (KD)">
+                        <input type="hidden" name="product_price" value="185000">
+                        <input type="hidden" name="product_option" value="130 trắng">
+                        <input type="hidden" name="product_qty" value="1" min = "1">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26fczqyqdgydf">
+                        <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img">
+                <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2" alt="Sản phẩm dưỡng da">
+                <span class="badge discount">-34%</span>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like 4g - Mibebe</h3>
+                <div class="price">
+                    <span class="old-price">400.000</span>
+                    <span class="new-price">264.000đ</span>
+                </div>
+                <div class="extra-info">
+                    <span class="rating">⭐ 5.0 | Đã bán 9.3k</span>
+                    <span class="location">Hồ Chí Minh</span>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart" onclick="openCartModal('Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like 4g - Mibebe', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2')">
+                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                    <form method="POST" action="checkout.php">
+                        <input type="hidden" name="product_name" value="Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like 4g - Mibebe">
+                        <input type="hidden" name="product_price" value="185000">
+                        <input type="hidden" name="product_option" value="130 trắng">
+                        <input type="hidden" name="product_qty" value="1" min = "1">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2">
                         <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                     </form>
                 </div>
@@ -630,10 +380,16 @@
         <div class="cart-modal" id="cartModal">
             <div class="cart-modal-content">
                 <span class="close-btn" onclick="closeCartModal()">&times;</span>
-                <img src="assets/images/product1.jpg" alt="Sản phẩm" class="modal-img">
-                <h3 id="modalTitle">Tên sản phẩm</h3>
-                <p class="modal-price" id="modalPrice">Giá</p>
-                <p class="modal-stock">Kho: 4558</p>
+
+                <!-- Gộp ảnh và thông tin sản phẩm vào 1 hàng -->
+                <div class="modal-header">
+                    <img src="assets/images/product1.jpg" alt="Sản phẩm" class="modal-img">
+                    <div class="product-info">
+                        <h3 id="modalTitle">Tên sản phẩm</h3>
+                        <p class="modal-price" id="modalPrice">Giá</p>
+                        <p class="modal-stock">Kho: 4558</p>
+                    </div>
+                </div>
 
                 <form method="POST" action="add_to_cart.php" id="addToCartForm">
                     <input type="hidden" name="product_name" id="modalProductName">
