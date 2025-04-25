@@ -586,7 +586,7 @@
                         <input type="hidden" name="product_name" value="Son Tint lì cho môi căng mọc Hàn Quốc Romand">
                         <input type="hidden" name="product_price" value="185000">
                         <input type="hidden" name="product_option" value="130 trắng">
-                        <input type="hidden" name="product_qty" value="1">
+                        <input type="hidden" name="product_qty" value="1" min = "1">
                         <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134201-7ras8-m1hzy5ps272r21">
                         <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                     </form>
@@ -617,7 +617,7 @@
                         <input type="hidden" name="product_name" value="Son Tint lì cho môi căng mọc Hàn Quốc Romand">
                         <input type="hidden" name="product_price" value="185000">
                         <input type="hidden" name="product_option" value="130 trắng">
-                        <input type="hidden" name="product_qty" value="1">
+                        <input type="hidden" name="product_qty" value="1" min = "1">
                         <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134201-7ras8-m1hzy5ps272r21">
                         <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                     </form>
@@ -657,7 +657,7 @@
                         <button type="button" onclick="increaseQty()">+</button>
                     </div>
 
-                    <button type="submit" class="add-to-cart-btn">Thêm vào Giỏ hàng</button>
+                    <button class="add-to-cart-btn">Thêm vào giỏ hàng</button>
                 </form>
             </div>
         </div>
