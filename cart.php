@@ -1,138 +1,186 @@
+<?php
+session_start();
+require_once 'connect.php';
+
+// Kiểm tra xem có thông báo Toast hay không
+$toast_message = $_SESSION['toast_message'] ?? '';
+unset($_SESSION['toast_message']);  // Xóa thông báo sau khi hiển thị
+
+// Lấy session_id hiện tại
+$session_id = session_id();
+
+// Lấy tất cả sản phẩm trong giỏ hàng của người dùng
+$sql = "SELECT * FROM cart_items WHERE session_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $session_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$cart_items = [];
+
+while ($row = $result->fetch_assoc()) {
+    $cart_items[] = $row;
+}
+
+$total_price = 0;
+
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
-    <title>Giỏ hàng Shopee</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-        }
-        .cart-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        h2 {
-            margin-bottom: 20px;
-            color: #ee4d2d;
-        }
-        .cart-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .cart-table th, .cart-table td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-        .product-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .product-info img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        .qty-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .qty-controls button {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #ccc;
-            background: #fff;
-            cursor: pointer;
-        }
-        .qty-controls input {
-            width: 40px;
-            text-align: center;
-            border: 1px solid #ccc;
-            height: 30px;
-        }
-        .cart-footer {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .checkout-btn {
-            background: #ee4d2d;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .checkout-btn:hover {
-            background: #d84324;
-        }
-        button[name="delete"] {
-            background: none;
-            border: none;
-            color: red;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        input[type="checkbox"] {
-            transform: scale(1.2);
-        }
-    </style>
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Style cho trang giỏ hàng -->
 </head>
+<style>
+
+    .h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .cart-container {
+        width: 80%;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .cart-table th,
+    .cart-table td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+    }
+
+    .cart-footer {
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    .checkout-btn {
+        background-color: #ee4d2d;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .checkout-btn:hover {
+        background-color: #d84324;
+    }
+
+    .toast-message {
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px;
+        margin-bottom: 20px;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    .cart-table img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .remove-btn {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #ffcccc;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background-color: #ff6666;
+}
+
+</style>
+
 <body>
+<form method="POST" action="remove_from_cart.php">
     <div class="cart-container">
-        <h2>🛍️ Giỏ Hàng Của Bạn</h2>
-        <form method="post" action="update_cart.php">
-            <table class="cart-table">
-                <thead>
+    <h2><i class="fas fa-shopping-cart"></i> Giỏ hàng của bạn</h2>
+
+        <?php if ($toast_message): ?>
+            <div class="toast-message"><?= $toast_message; ?></div>
+        <?php endif; ?>
+
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all" onclick="toggleSelectAll()"> Chọn tất cả</th> <!-- Checkbox Select All -->
+                    <th>Ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Phân loại</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (count($cart_items) > 0): ?>
+                    <?php foreach ($cart_items as $item): 
+                        $subtotal = $item['price'] * $item['quantity'];
+                        $total_price += $subtotal;
+                    ?>
+                        <tr>
+                            <td><input type="checkbox" name="selected_items[]" value="<?= $item['id']; ?>"></td> <!-- Checkbox cho mỗi sản phẩm -->
+                            <td><img src="<?= htmlspecialchars($item['product_image']); ?>" alt="<?= htmlspecialchars($item['product_name']); ?>" width="50" height="50"></td>
+                            <td><?= htmlspecialchars($item['product_name']); ?></td>
+                            <td><?= htmlspecialchars($item['product_option']); ?></td>
+                            <td><?= number_format($item['price'], 3, '.', '.'); ?></td>
+                            <td><?= $item['quantity']; ?></td>
+                            <td><?= number_format($subtotal, 3, '.', '.'); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
-                        <th><input type="checkbox" id="selectAll"></th>
-                        <th>Sản phẩm</th>
-                        <th>Phân loại</th>
-                        <th>Đơn giá</th>
-                        <th>Số lượng</th>
-                        <th>Thành tiền</th>
-                        <th>Thao tác</th>
+                        <td colspan="7">Giỏ hàng của bạn hiện tại trống!</td>
                     </tr>
-                </thead>
-                <tbody>
-                    <!-- Dữ liệu PHP sẽ đổ vào đây -->
-                </tbody>
-            </table>
+                <?php endif; ?>
+            </tbody>
+        </table>
+
+        <?php if (count($cart_items) > 0): ?>
             <div class="cart-footer">
-                <label><input type="checkbox" id="selectAllBottom"> Chọn tất cả</label>
-                <div class="total">Tổng: <strong>0đ</strong></div>
-                <button class="checkout-btn">Mua hàng</button>
+                <p><strong>Tổng cộng: <?= number_format($total_price, 3, '.', '.') ; ?></strong></p>
+                <button type="submit" class="checkout-btn">Xóa đã chọn</button>
+                <a href="checkout.php" class="checkout-btn">Thanh toán</a>
             </div>
-        </form>
+        <?php endif; ?>
     </div>
-    <script>
-        const selectAll = document.getElementById('selectAll');
-        const selectAllBottom = document.getElementById('selectAllBottom');
-        function syncCheckAll(source) {
-            document.querySelectorAll('.item-check').forEach(cb => cb.checked = source.checked);
-            selectAll.checked = source.checked;
-            selectAllBottom.checked = source.checked;
-        }
-        selectAll.addEventListener('change', () => syncCheckAll(selectAll));
-        selectAllBottom.addEventListener('change', () => syncCheckAll(selectAllBottom));
-    </script>
+</form>
+
+<script>
+    // Toggle select/unselect all checkboxes
+    function toggleSelectAll() {
+        var selectAll = document.getElementById('select-all');
+        var checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = selectAll.checked;
+        });
+    }
+</script>
+
 </body>
+
 </html>
+
+<?php
+$conn->close();
+?>
