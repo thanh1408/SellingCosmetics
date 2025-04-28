@@ -29,7 +29,9 @@
 
         <!-- Logo + search bar + cart -->
         <div class="topbar">
-            <a href="home.php" class="logo">🌸 MYPHAM 563</a>
+            <a href="home.php" class="logo">
+                <img src="assets/images/logo.jpg" alt="Mỹ Phẩm 563" style="height: 90px;">
+            </a>
             <form class="search-box" method="GET" action="search.php">
                 <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
                 <button type="submit"><i class="fas fa-search"></i></button>
@@ -51,7 +53,7 @@
             <a href="#">Perfume</a>
         </nav>
     </header>
-<div class="main-content">
+    <div class="main-content">
     <nav class="category">
                              <h3 class="category__heading">
                                  <i class="category__heading_icon fa-solid fa-list"></i>
@@ -77,7 +79,7 @@
                                  </li>
                              </ul>
                          </nav>
-    <!-- Product Card -->
+        <!-- Product Card -->
     <!-- Product List -->
     <div class="product-list">
         <div class="product-card" data-id = "p1" >
@@ -396,6 +398,7 @@
                 </div>
             </div>
         </div>
+    </div>
         <!-- Modal Thêm vào giỏ hàng -->
         <div class="cart-modal" id="cartModal">
             <div class="cart-modal-content">
