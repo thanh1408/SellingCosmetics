@@ -51,9 +51,32 @@
             <a href="#">Perfume</a>
         </nav>
     </header>
-
-    <!-- Product Card -->
-    <!-- Product List -->
+<div class="main-content">
+    <nav class="category">
+                             <h3 class="category__heading">
+                                 <i class="category__heading_icon fa-solid fa-list"></i>
+                                 DANH MỤC
+                             </h3>
+                             <ul class="category-list">
+                                 <li class="category-item ">
+                                     <a href="skincare.php" class="category-item__link">Skincare</a>
+                                 </li>
+             
+                                 <li class="category-item">
+                                     <a href="makeup.php" class="category-item__link">Makeup</a>
+                                 </li>
+             
+                                 <li class="category-item">
+                                     <a href="haircare.php" class="category-item__link">Haircare</a>
+                                 </li>
+                                 <li class="category-item">
+                                     <a href="bodycare.php" class="category-item__link">Bodycare</a>
+                                 </li>
+                                 <li class="category-item">
+                                     <a href="perfume.php" class="category-item__link">Perfume</a>
+                                 </li>
+                             </ul>
+                         </nav>
     <div class="product-list">
         <div class="product-card">
             <div class="product-img">
@@ -152,6 +175,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
 
 
