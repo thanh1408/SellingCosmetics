@@ -77,15 +77,17 @@
                                  </li>
                              </ul>
                          </nav>
+    <!-- Product Card -->
+    <!-- Product List -->
     <div class="product-list">
-        <div class="product-card">
+        <div class="product-card" data-id = "p1" >
             <div class="product-img">
                 <img src="https://down-vn.img.susercontent.com/file/a740cc999ebc78acde421864a7258777.webp" alt="Son MAC chính hãng">
 
                 <span class="badge discount">-33%</span>
             </div>
             <div class="product-info">
-                <h3 class="product-title">Sữa Rửa Mặt Ý Dĩ Hatomugi nội địa Nhật Bản 130g 170g giúp da trắng sáng</h3>
+                <h3 class="product-title">Sữa Rửa Mặt Ý Dĩ Hatomugi nội địa Nhật Bản 130g giúp da trắng sáng</h3>
                 <div class="price">
                     <span class="old-price">60.000đ</span>
                     <span class="new-price">40.000đ</span>
@@ -112,9 +114,9 @@
 
       
       
-        <div class="product-card">
+        <div class="product-card" data-id = "p2">
             <div class="product-img">
-                <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmeejqn0w5wf97.webp" alt="Sản phẩm dưỡng da">
+                <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lfxjx5kitxx37b" alt="Sản phẩm dưỡng da">
                 <span class="badge discount">-20%</span>
             </div>
             <div class="product-info">
@@ -128,7 +130,7 @@
                     <span class="location">Hà Nội</span>
                 </div>
                 <div class="product-actions">
-                <button class="add-to-cart" onclick="openCartModal('Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường, da khô', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmeejqn0w5wf97.webp')">
+                <button class="add-to-cart" onclick="openCartModal('Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường, da khô', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lfxjx5kitxx37b')">
                         <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                     </button>
                     <form method="POST" action="checkout.php">
@@ -136,7 +138,7 @@
                         <input type="hidden" name="product_price" value="185000">
                         <input type="hidden" name="product_option" value="130 trắng">
                         <input type="hidden" name="product_qty" value="1" min = "1">
-                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lmeejqn0w5wf97.webp">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lfxjx5kitxx37b">
                         <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                     </form>
                 </div>
@@ -145,9 +147,9 @@
 
 
 
-        <div class="product-card">
+        <div class="product-card" data-id = "p3">
             <div class="product-img">
-                <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m80pob388y9z91.webp" alt="Sản phẩm dưỡng da">
+                <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8iqk98jisg725" alt="Sản phẩm dưỡng da">
                 <span class="badge discount">-47%</span>
             </div>
             <div class="product-info">
@@ -161,7 +163,7 @@
                     <span class="location">Hồ Chí Minh</span>
                 </div>
                 <div class="product-actions">
-                <button class="add-to-cart" onclick="openCartModal('Serum Phục Hồi Da Sáng Khỏe Sau Mụn TiaM Vita B3 Source 40Ml ', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m80pob388y9z91.webp')">
+                <button class="add-to-cart" onclick="openCartModal('Serum Phục Hồi Da Sáng Khỏe Sau Mụn TiaM Vita B3 Source 40Ml ', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8iqk98jisg725')">
                         <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                     </button>
                     <form method="POST" action="checkout.php">
@@ -169,17 +171,16 @@
                         <input type="hidden" name="product_price" value="185000">
                         <input type="hidden" name="product_option" value="130 trắng">
                         <input type="hidden" name="product_qty" value="1" min = "1">
-                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m80pob388y9z91.webp">
+                        <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8iqk98jisg725">
                         <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
 
 
 
-        <div class="product-card">
+        <div class="product-card" data-id = "p4">
             <div class="product-img">
                 <img src=https://down-vn.img.susercontent.com/file/sg-11134201-7rfhg-m3kh553myq7bc8 alt="Sản phẩm dưỡng da">
                 <span class="badge discount">-45%</span>
@@ -210,7 +211,7 @@
             </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" data-id = "p5">
             <div class="product-img">
                 <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
                 <span class="badge discount">-4%</span>
@@ -241,7 +242,7 @@
             </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" data-id = "p6">
             <div class="product-img">
                 <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8lkwxcx3ix3fe alt="Sản phẩm dưỡng da">
                 <span class="badge discount">-60%</span>
@@ -272,7 +273,7 @@
             </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" data-id = "p7">
             <div class="product-img">
                 <img src=https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8cwtleitrgkb7 alt="Sản phẩm dưỡng da">
                 <span class="badge discount">-20%</span>
@@ -303,7 +304,7 @@
             </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" data-id = "p8">
             <div class="product-img">
                 <img src=https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8y6psofy1kyad alt="Sản phẩm dưỡng da">
                 <span class="badge discount">-46%</span>
@@ -333,11 +334,8 @@
                 </div>
             </div>
         </div>
-
        
-       
-       
-        <div class="product-card">
+        <div class="product-card" data-id = "p9">
             <div class="product-img">
                 <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26fczqyqdgydf alt="Sản phẩm dưỡng da">
                 <span class="badge discount">-46%</span>
@@ -368,7 +366,7 @@
             </div>
         </div>
 
-        <div class="product-card">
+        <div class="product-card" data-id = "p10">
             <div class="product-img">
                 <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2" alt="Sản phẩm dưỡng da">
                 <span class="badge discount">-34%</span>
@@ -398,8 +396,6 @@
                 </div>
             </div>
         </div>
-
-
         <!-- Modal Thêm vào giỏ hàng -->
         <div class="cart-modal" id="cartModal">
             <div class="cart-modal-content">
@@ -411,7 +407,7 @@
                     <div class="product-info">
                         <h3 id="modalTitle">Tên sản phẩm</h3>
                         <p class="modal-price" id="modalPrice">Giá</p>
-                        <p class="modal-stock">Kho: 4558</p>
+                        <p class="modal-stock">Kho: 10.000</p>
                     </div>
                 </div>
 
@@ -424,10 +420,10 @@
                     <div class="modal-options">
                         <h4>Phân Loại</h4>
                         <div class="option-btn-group">
-                            <button type="button" class="option-btn active" onclick="selectOption(this)">130 trắng</button>
-                            <button type="button" class="option-btn" onclick="selectOption(this)">170 trắng</button>
-                            <button type="button" class="option-btn" onclick="selectOption(this)">130 xanh da mụn</button>
-                        </div>
+                            <button type="button" class="option-btn active" onclick="selectOption(this)" data-img="assets/images/product1.jpg" data-price="120000">130 trắng</button>
+                            <button type="button" class="option-btn" onclick="selectOption(this)" data-img="assets/images/product2.jpg" data-price="130000">170 trắng</button>
+                            <button type="button" class="option-btn" onclick="selectOption(this)" data-img="assets/images/product3.jpg" data-price="125000">130 xanh da mụn</button>
+                         </div>   
                     </div>
 
                     <div class="modal-quantity">
@@ -500,6 +496,142 @@
                     openCartModal(name, price, img);
                 });
             });
+
+
+
+
+
+const productVariants = {
+        p1: [
+            { name: '130g trắng', img: 'assets/images/hatomogi_trang.jpg', price: 40000 },
+            { name: '130g xanh', img: 'assets/images/hatomogi_xanh.jpg', price: 40000 }
+        ],
+        p2: [
+            { name: '88ml', img: 'assets/images/product2.jpg', price: 88000 },
+            { name: '236ml', img: 'assets/images/product2.jpg', price: 284000 }
+        ],
+        p3: [
+            { name: 'Vàng', img: 'assets/images/p31.jpg', price: 295000 },
+            { name: 'Đen', img: 'assets/images/p32.jpg', price: 295000 },
+            { name: 'Trắng', img: 'assets/images/p33.jpg', price: 295000 }
+        ],
+        p4: [
+            { name: 'A01#', img: 'assets/images/p41.jpg', price: 36300 },
+            { name: 'A02#', img: 'assets/images/p42.jpg', price: 39600 }
+        ],
+        p5: [
+            { name: '10ml', img: 'assets/images/p5.jpg', price: 311000 },
+            { name: '30ml', img: 'assets/images/p5.jpg', price: 651000 }
+        ],
+        p6: [
+            { name: 'JUICY 20 + Glas 16', img: 'assets/images/p61.jpg', price: 269000 },
+            { name: 'JUICY 23 + Glas 16', img: 'assets/images/p62.jpg', price: 269000 }
+        ],
+        p7: [
+            { name: '60ml', img: 'assets/images/p7.jpg', price: 65600 }
+        ],
+        p8: [
+            { name: 'Sạch da giảm nhờn', img: 'assets/images/p81.jpg', price: 254000 },
+            { name: 'Dịu nhẹ da nhạy', img: 'assets/images/p82.jpg', price: 254000 },
+            { name: 'Dành cho da sạm', img: 'assets/images/p83.jpg', price: 254000 }
+        ],
+        p9: [
+            { name: 'NTT + SRM', img: 'assets/images/p9.jpg', price: 165000 },
+            { name: 'NTT + KD', img: 'assets/images/p9.jpg', price: 120000 },
+            { name: 'SRM + KD', img: 'assets/images/p9.jpg', price: 139000 },
+            { name: 'NTT + TONER + SRm + KD', img: 'assets/images/p9.jpg', price: 304000 }
+        ],
+        p10: [
+            { name: 'Taupe', img: 'assets/images/p101.jpg', price: 264000 },
+            { name: 'Best ever', img: 'assets/images/p102.jpg', price: 264000 }
+        ]
+    };
+
+    function openCartModal(productId, name) {
+        const variants = productVariants[productId];
+        const defaultVariant = variants[0];
+
+        document.getElementById('modalTitle').innerText = name;
+        document.getElementById('modalProductName').value = name;
+        document.getElementById('modalProductQty').value = 1;
+        document.getElementById('qtyInput').value = 1;
+
+        // Render ảnh và giá mặc định
+        document.querySelector('.modal-img').src = defaultVariant.img;
+        document.getElementById('modalProductPrice').value = defaultVariant.price;
+        document.getElementById('modalPrice').innerText = defaultVariant.price + 'đ';
+        document.getElementById('modalProductOption').value = defaultVariant.name;
+
+        // Render danh sách phân loại
+        const optionGroup = document.querySelector('.option-btn-group');
+        optionGroup.innerHTML = ''; // Clear cũ
+
+        variants.forEach((variant, index) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'option-btn' + (index === 0 ? ' active' : '');
+            btn.innerText = variant.name;
+            btn.setAttribute('data-img', variant.img);
+            btn.setAttribute('data-price', variant.price);
+            btn.onclick = function () {
+                selectOption(this);
+            };
+            optionGroup.appendChild(btn);
+        });
+
+        document.getElementById('cartModal').style.display = 'block';
+    }
+
+    // Chọn phân loại
+    function selectOption(btn) {
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        document.querySelector('.modal-img').src = btn.getAttribute('data-img');
+        const price = btn.getAttribute('data-price');
+        document.getElementById('modalPrice').innerText = price + 'đ';
+        document.getElementById('modalProductPrice').value = price;
+        document.getElementById('modalProductOption').value = btn.innerText;
+    }
+
+    // Đóng modal
+    function closeCartModal() {
+        document.getElementById('cartModal').style.display = 'none';
+    }
+
+    // Tăng / giảm số lượng
+    function increaseQty() {
+        let qty = parseInt(document.getElementById('qtyInput').value);
+        qty++;
+        document.getElementById('qtyInput').value = qty;
+        document.getElementById('modalProductQty').value = qty;
+    }
+
+    function decreaseQty() {
+        let qty = parseInt(document.getElementById('qtyInput').value);
+        if (qty > 1) {
+            qty--;
+            document.getElementById('qtyInput').value = qty;
+            document.getElementById('modalProductQty').value = qty;
+        }
+    }
+
+    // Đóng khi click ngoài
+    window.onclick = function (event) {
+        const modal = document.getElementById('cartModal');
+        if (event.target === modal) modal.style.display = "none";
+    };
+
+    // Gán sự kiện nút
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const productCard = btn.closest('.product-card');
+            const id = productCard.dataset.id;
+            const name = productCard.querySelector('.product-title').innerText;
+            openCartModal(id, name);
+        });
+    });
+
         </script>
 </body>
 
