@@ -1,21 +1,36 @@
+<?php
+session_start();
+require_once 'connect.php';
+?>
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết sản phẩm - Mỹ phẩm</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/styleDN.css">
     <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.4.0-web/fontawesome-free-6.4.0-web/css/all.min.css">
 </head>
 
 <body>
 
     <?php
-    session_start();
     if (!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = [];
+    }
+
+    $session_id = session_id();
+    $cart_count = 0;
+
+    // Truy vấn tổng số lượng sản phẩm trong giỏ hàng
+    $sql = "SELECT SUM(quantity) AS total_quantity FROM cart_items WHERE session_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $session_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()) {
+        $cart_count = $row['total_quantity'] ?? 0;
     }
     ?>
     <!-- Header -->
@@ -24,8 +39,13 @@
         <div class="top-info">
             <div class="left"></div>
             <div class="right">
-                <a href="#"><i class="fas fa-bell"></i> Thông Báo</a>
-                <a href="login.php"><i class="fas fa-user"></i> Đăng nhập</a>
+                <?php
+                if (isset($_SESSION['username'])) {
+                    echo "<span>Xin chào <strong>{$_SESSION['username']}</strong>, <a href='logout.php'>Đăng xuất</a></span>";
+                } else {
+                    echo '<a href="login.php">Bạn chưa đăng nhập</a>';
+                }
+                ?>
             </div>
         </div>
 
@@ -35,25 +55,66 @@
                 <img src="assets/images/logo.jpg" alt="Mỹ Phẩm 563" style="height: 90px;">
             </a>
             <form class="search-box" method="GET" action="search.php">
-                <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
+                <input type="text" name="query" placeholder="Tìm kiếm sản phẩm..." required>
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
 
-            <a href="cart.php" class="cart-icon">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
-            </a>
-        </div>
+            <div class="icon-container">
+                <a href="cart.php" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count"><?php echo $cart_count; ?></span>
+                </a>
 
+                <a href="#" class="bell-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="bell-count">0</span>
+                </a>
+            </div>
+
+        </div>
         <!-- Navbar -->
         <nav class="navbar">
             <a href="home.php"><i class="fa-solid fa-house"></i></a>
-            <a href="skincare.php">Skincare</a>
-            <a href="#">Makeup</a>
-            <a href="#">Haircare</a>
-            <a href="#">Bodycare</a>
-            <a href="#">Perfume</a>
+            <a href="#" onclick="openGioiThieu()">Giới thiệu</a>
+            <a href="#" onclick="openDichVu()">Dịch vụ</a>
+            <a href="register.php">Đăng ký</a>
+            <a href="login.php">Đăng nhập</a>
+            <a href="contact.php">Liên hệ</a>
         </nav>
+        <!-- Khung giới thiệu -->
+        <div id="gioiThieuBox" style="display: none; background:rgb(255, 240, 245); padding: 20px; color: black; border-radius: 4px; position: relative; margin-top : 16px">
+            <!-- Nút đóng -->
+            <span onclick="closeGioiThieu()" style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer;">&times;</span>
+
+            <h2>🌸 Giới thiệu về <strong>Luna Beauty</strong></h2>
+            <p>Chào bạn đến với <strong>Luna Beauty</strong> – thế giới mỹ phẩm nơi vẻ đẹp tự nhiên được tôn vinh mỗi ngày!</p>
+            <p><strong>Luna Beauty</strong> được thành lập với mong muốn mang đến cho bạn những sản phẩm chăm sóc da chính hãng, an toàn và hiệu quả...</p>
+            <ul>
+                <li>Sản phẩm 100% chính hãng, có đầy đủ hóa đơn – nguồn gốc rõ ràng.</li>
+                <li>Tư vấn chăm sóc da chuyên sâu, phù hợp với từng loại da.</li>
+                <li>Chính sách đổi trả minh bạch.</li>
+                <li>Giao hàng toàn quốc.</li>
+            </ul>
+            <p><strong>Sứ mệnh:</strong> Chúng tôi tin rằng đẹp là khi bạn tự tin là chính mình.</p>
+        </div>
+        <!-- khung dịch vụ -->
+        <div id="dichVuBox" style="background-color: #fff0f5; padding: 30px; border-radius: 4px; display: none; margin-top: 16px; position: relative;">
+            <span onclick="closeDichVu()" style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer;">&times;</span>
+            <h2 style="color: #e84a70;">
+                <i class="fas fa-concierge-bell"></i> Dịch vụ của Luna Beauty
+            </h2>
+            <ul style="line-height: 1.8; font-size: 16px; list-style: none; padding-left: 0;">
+                <li><i class="fas fa-comments"></i> <strong>Tư vấn chăm sóc da miễn phí</strong> theo từng loại da & tình trạng da.</li>
+                <li><i class="fas fa-shipping-fast"></i> <strong>Giao hàng nhanh toàn quốc</strong>, hỗ trợ kiểm tra trước khi nhận.</li>
+                <li><i class="fas fa-exchange-alt"></i> <strong>Đổi/trả hàng dễ dàng</strong> trong vòng 7 ngày nếu có lỗi.</li>
+                <li><i class="fas fa-gift"></i> <strong>Gói quà miễn phí</strong> – gửi lời chúc yêu thương đến người nhận.</li>
+                <li><i class="fas fa-gem"></i> <strong>Ưu đãi khách hàng thân thiết</strong> – tích điểm & nhận voucher giảm giá.</li>
+            </ul>
+        </div>
+
+
+
+
     </header>
     <div class="main-content">
         <nav class="category">
@@ -84,10 +145,32 @@
         <!-- Product Card -->
         <!-- Product List -->
         <div class="product-list">
+            <div class="sort-bar">
+                <div class="sort-left">
+                    <span class="sort-label">Sắp xếp theo</span>
+                    <span class="sort-item active">Phổ biến</span>
+                    <span class="sort-item">Mới nhất</span>
+                    <span class="sort-item">Bán chạy</span>
+                    <div class="sort-price">
+                        Giá <i class="fas fa-chevron-down"></i>
+                        <div class="sort-price-dropdown">
+                            <div class="sort-price-option">Giá thấp đến cao</div>
+                            <div class="sort-price-option">Giá cao đến thấp</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sort-right">
+                    <span class="page-status">1/14</span>
+                    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+
             <div class="product-card" data-id="p1">
                 <div class="product-img">
-                    <img src="https://down-vn.img.susercontent.com/file/a740cc999ebc78acde421864a7258777.webp"
-                        alt="Son MAC chính hãng">
+                    <img src="https://down-vn.img.susercontent.com/file/a740cc999ebc78acde421864a7258777.webp" alt="Son MAC chính hãng">
 
                     <span class="badge discount">-33%</span>
                 </div>
@@ -102,18 +185,15 @@
                         <span class="location">Bắc Giang</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart"
-                            onclick="openCartModal('Sữa Rửa Mặt Ý Dĩ Hatomugi nội địa Nhật Bản 130g 170g giúp da trắng sáng', '185000', 'https://down-vn.img.susercontent.com/file/a740cc999ebc78acde421864a7258777.webp')">
+                        <button class="add-to-cart" onclick="openCartModal('Sữa Rửa Mặt Ý Dĩ Hatomugi nội địa Nhật Bản 130g 170g giúp da trắng sáng', '185000', 'https://down-vn.img.susercontent.com/file/a740cc999ebc78acde421864a7258777.webp')">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
                         <form method="POST" action="checkout.php">
-                            <input type="hidden" name="product_name"
-                                value="Sữa Rửa Mặt Ý Dĩ Hatomugi nội địa Nhật Bản 130g 170g giúp da trắng sáng">
+                            <input type="hidden" name="product_name" value="Sữa Rửa Mặt Ý Dĩ Hatomugi nội địa Nhật Bản 130g 170g giúp da trắng sáng">
                             <input type="hidden" name="product_price" value="185000">
                             <input type="hidden" name="product_option" value="130 trắng">
                             <input type="hidden" name="product_qty" value="1" min="1">
-                            <input type="hidden" name="product_img"
-                                value="https://down-vn.img.susercontent.com/file/a740cc999ebc78acde421864a7258777.webp">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/a740cc999ebc78acde421864a7258777.webp">
                             <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                         </form>
                     </div>
@@ -124,13 +204,11 @@
 
             <div class="product-card" data-id="p2">
                 <div class="product-img">
-                    <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lfxjx5kitxx37b"
-                        alt="Sản phẩm dưỡng da">
+                    <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lfxjx5kitxx37b" alt="Sản phẩm dưỡng da">
                     <span class="badge discount">-20%</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường,
-                        da khô</h3>
+                    <h3 class="product-title">Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường, da khô</h3>
                     <div class="price">
                         <span class="old-price">110.000đ</span>
                         <span class="new-price">88.000đ</span>
@@ -140,18 +218,15 @@
                         <span class="location">Hà Nội</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart"
-                            onclick="openCartModal('Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường, da khô', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lfxjx5kitxx37b')">
+                        <button class="add-to-cart" onclick="openCartModal('Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường, da khô', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lfxjx5kitxx37b')">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
                         <form method="POST" action="checkout.php">
-                            <input type="hidden" name="product_name"
-                                value="Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường, da khô">
+                            <input type="hidden" name="product_name" value="Sữa rửa mặt Cerave 236ml làm sạch sâu dưỡng ẩm cho da dầu mụn, da thường, da khô">
                             <input type="hidden" name="product_price" value="185000">
                             <input type="hidden" name="product_option" value="130 trắng">
                             <input type="hidden" name="product_qty" value="1" min="1">
-                            <input type="hidden" name="product_img"
-                                value="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lfxjx5kitxx37b">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lfxjx5kitxx37b">
                             <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                         </form>
                     </div>
@@ -162,8 +237,7 @@
 
             <div class="product-card" data-id="p3">
                 <div class="product-img">
-                    <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8iqk98jisg725"
-                        alt="Sản phẩm dưỡng da">
+                    <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8iqk98jisg725" alt="Sản phẩm dưỡng da">
                     <span class="badge discount">-47%</span>
                 </div>
                 <div class="product-info">
@@ -177,18 +251,15 @@
                         <span class="location">Hồ Chí Minh</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart"
-                            onclick="openCartModal('Serum Phục Hồi Da Sáng Khỏe Sau Mụn TiaM Vita B3 Source 40Ml ', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8iqk98jisg725')">
+                        <button class="add-to-cart" onclick="openCartModal('Serum Phục Hồi Da Sáng Khỏe Sau Mụn TiaM Vita B3 Source 40Ml ', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8iqk98jisg725')">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
                         <form method="POST" action="checkout.php">
-                            <input type="hidden" name="product_name"
-                                value="Serum Phục Hồi Da Sáng Khỏe Sau Mụn Tia'M Vita B3 Source 40Ml ">
+                            <input type="hidden" name="product_name" value="Serum Phục Hồi Da Sáng Khỏe Sau Mụn Tia'M Vita B3 Source 40Ml ">
                             <input type="hidden" name="product_price" value="185000">
                             <input type="hidden" name="product_option" value="130 trắng">
                             <input type="hidden" name="product_qty" value="1" min="1">
-                            <input type="hidden" name="product_img"
-                                value="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8iqk98jisg725">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8iqk98jisg725">
                             <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                         </form>
                     </div>
@@ -199,13 +270,11 @@
 
             <div class="product-card" data-id="p4">
                 <div class="product-img">
-                    <img src=https://down-vn.img.susercontent.com/file/sg-11134201-7rfhg-m3kh553myq7bc8
-                        alt="Sản phẩm dưỡng da">
+                    <img src=https://down-vn.img.susercontent.com/file/sg-11134201-7rfhg-m3kh553myq7bc8 alt="Sản phẩm dưỡng da">
                     <span class="badge discount">-45%</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Bảng phấn mắt nhũ tương 8 hình trái tim có điểm nổi bật nhũ tương, Bảng
-                        phấn mắt 3in1 với má hồng</h3>
+                    <h3 class="product-title">Bảng phấn mắt nhũ tương 8 hình trái tim có điểm nổi bật nhũ tương, Bảng phấn mắt 3in1 với má hồng</h3>
                     <div class="price">
                         <span class="old-price">66.000</span>
                         <span class="new-price">36.300đ</span>
@@ -215,18 +284,15 @@
                         <span class="location">Hồ Chí Minh</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart"
-                            onclick="openCartModal('Bảng phấn mắt nhũ tương 8 hình trái tim có điểm nổi bật nhũ tương, Bảng phấn mắt 3in1 với má hồng', '36300', 'https://down-vn.img.susercontent.com/file/sg-11134201-7rfhg-m3kh553myq7bc8')">
+                        <button class="add-to-cart" onclick="openCartModal('Bảng phấn mắt nhũ tương 8 hình trái tim có điểm nổi bật nhũ tương, Bảng phấn mắt 3in1 với má hồng', '36300', 'https://down-vn.img.susercontent.com/file/sg-11134201-7rfhg-m3kh553myq7bc8')">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
                         <form method="POST" action="checkout.php">
-                            <input type="hidden" name="product_name"
-                                value="Bảng phấn mắt nhũ tương 8 hình trái tim có điểm nổi bật nhũ tương, Bảng phấn mắt 3in1 với má hồng">
+                            <input type="hidden" name="product_name" value="Bảng phấn mắt nhũ tương 8 hình trái tim có điểm nổi bật nhũ tương, Bảng phấn mắt 3in1 với má hồng">
                             <input type="hidden" name="product_price" value="185000">
                             <input type="hidden" name="product_option" value="130 trắng">
                             <input type="hidden" name="product_qty" value="1" min="1">
-                            <input type="hidden" name="product_img"
-                                value="https://down-vn.img.susercontent.com/file/sg-11134201-7rfhg-m3kh553myq7bc8">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/sg-11134201-7rfhg-m3kh553myq7bc8">
                             <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                         </form>
                     </div>
@@ -235,13 +301,11 @@
 
             <div class="product-card" data-id="p5">
                 <div class="product-img">
-                    <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9
-                        alt="Sản phẩm dưỡng da">
+                    <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9 alt="Sản phẩm dưỡng da">
                     <span class="badge discount">-4%</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Tinh Chất oh!oh! Skin Health Serum (with 20% Niacinamide & 2% Acetyl
-                        Glucosamine) (10ml - 30ml)</h3>
+                    <h3 class="product-title">Tinh Chất oh!oh! Skin Health Serum (with 20% Niacinamide & 2% Acetyl Glucosamine) (10ml - 30ml)</h3>
                     <div class="price">
                         <span class="old-price">325.000đ</span>
                         <span class="new-price">311.000đ</span>
@@ -251,18 +315,15 @@
                         <span class="location">Hồ Chí Minh</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart"
-                            onclick="openCartModal('Tinh Chất oh!oh! Skin Health Serum (with 20% Niacinamide & 2% Acetyl Glucosamine) (10ml - 30ml)', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9')">
+                        <button class="add-to-cart" onclick="openCartModal('Tinh Chất oh!oh! Skin Health Serum (with 20% Niacinamide & 2% Acetyl Glucosamine) (10ml - 30ml)', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9')">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
                         <form method="POST" action="checkout.php">
-                            <input type="hidden" name="product_name"
-                                value="Tinh Chất oh!oh! Skin Health Serum (with 20% Niacinamide & 2% Acetyl Glucosamine) (10ml - 30ml)">
+                            <input type="hidden" name="product_name" value="Tinh Chất oh!oh! Skin Health Serum (with 20% Niacinamide & 2% Acetyl Glucosamine) (10ml - 30ml)">
                             <input type="hidden" name="product_price" value="185000">
                             <input type="hidden" name="product_option" value="130 trắng">
                             <input type="hidden" name="product_qty" value="1" min="1">
-                            <input type="hidden" name="product_img"
-                                value="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m27i0toqrc8id9">
                             <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                         </form>
                     </div>
@@ -271,8 +332,7 @@
 
             <div class="product-card" data-id="p6">
                 <div class="product-img">
-                    <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8lkwxcx3ix3fe
-                        alt="Sản phẩm dưỡng da">
+                    <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8lkwxcx3ix3fe alt="Sản phẩm dưỡng da">
                     <span class="badge discount">-60%</span>
                 </div>
                 <div class="product-info">
@@ -286,18 +346,15 @@
                         <span class="location">Hồ Chí Minh</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart"
-                            onclick="openCartModal('Son bóng dưỡng môi bắt sáng 3CE Shine Reflector 1.7g', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8lkwxcx3ix3fe')">
+                        <button class="add-to-cart" onclick="openCartModal('Son bóng dưỡng môi bắt sáng 3CE Shine Reflector 1.7g', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8lkwxcx3ix3fe')">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
                         <form method="POST" action="checkout.php">
-                            <input type="hidden" name="product_name"
-                                value="Son bóng dưỡng môi bắt sáng 3CE Shine Reflector 1.7g">
+                            <input type="hidden" name="product_name" value="Son bóng dưỡng môi bắt sáng 3CE Shine Reflector 1.7g">
                             <input type="hidden" name="product_price" value="185000">
                             <input type="hidden" name="product_option" value="130 trắng">
                             <input type="hidden" name="product_qty" value="1" min="1">
-                            <input type="hidden" name="product_img"
-                                value="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8lkwxcx3ix3fe">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7ra0g-m8lkwxcx3ix3fe">
                             <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                         </form>
                     </div>
@@ -306,8 +363,7 @@
 
             <div class="product-card" data-id="p7">
                 <div class="product-img">
-                    <img src=https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8cwtleitrgkb7
-                        alt="Sản phẩm dưỡng da">
+                    <img src=https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8cwtleitrgkb7 alt="Sản phẩm dưỡng da">
                     <span class="badge discount">-20%</span>
                 </div>
                 <div class="product-info">
@@ -321,18 +377,15 @@
                         <span class="location">Phú Thọ 2</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart"
-                            onclick="openCartModal('Gel Mờ Sẹo Và Vết Thâm Scar Care Acnes 12Gr', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8cwtleitrgkb7')">
+                        <button class="add-to-cart" onclick="openCartModal('Gel Mờ Sẹo Và Vết Thâm Scar Care Acnes 12Gr', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8cwtleitrgkb7')">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
                         <form method="POST" action="checkout.php">
-                            <input type="hidden" name="product_name"
-                                value="Gel Mờ Sẹo Và Vết Thâm Scar Care Acnes 12Gr">
+                            <input type="hidden" name="product_name" value="Gel Mờ Sẹo Và Vết Thâm Scar Care Acnes 12Gr">
                             <input type="hidden" name="product_price" value="185000">
                             <input type="hidden" name="product_option" value="130 trắng">
                             <input type="hidden" name="product_qty" value="1" min="1">
-                            <input type="hidden" name="product_img"
-                                value="https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8cwtleitrgkb7">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8cwtleitrgkb7">
                             <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                         </form>
                     </div>
@@ -341,13 +394,11 @@
 
             <div class="product-card" data-id="p8">
                 <div class="product-img">
-                    <img src=https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8y6psofy1kyad
-                        alt="Sản phẩm dưỡng da">
+                    <img src=https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8y6psofy1kyad alt="Sản phẩm dưỡng da">
                     <span class="badge discount">-46%</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Nước Tẩy Trang làm sạch sâu dịu nhẹ cho mọi loại da - Garnier Micellar
-                        Cleansing Water 400ml</h3>
+                    <h3 class="product-title">Nước Tẩy Trang làm sạch sâu dịu nhẹ cho mọi loại da - Garnier Micellar Cleansing Water 400ml</h3>
                     <div class="price">
                         <span class="old-price">398.000</span>
                         <span class="new-price">254.000đ</span>
@@ -357,18 +408,15 @@
                         <span class="location">Hồ Chí Minh</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart"
-                            onclick="openCartModal('Nước Tẩy Trang làm sạch sâu dịu nhẹ cho mọi loại da - Garnier Micellar Cleansing Water 400ml', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8y6psofy1kyad')">
+                        <button class="add-to-cart" onclick="openCartModal('Nước Tẩy Trang làm sạch sâu dịu nhẹ cho mọi loại da - Garnier Micellar Cleansing Water 400ml', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8y6psofy1kyad')">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
                         <form method="POST" action="checkout.php">
-                            <input type="hidden" name="product_name"
-                                value="Nước Tẩy Trang làm sạch sâu dịu nhẹ cho mọi loại da - Garnier Micellar Cleansing Water 400ml">
+                            <input type="hidden" name="product_name" value="Nước Tẩy Trang làm sạch sâu dịu nhẹ cho mọi loại da - Garnier Micellar Cleansing Water 400ml">
                             <input type="hidden" name="product_price" value="185000">
                             <input type="hidden" name="product_option" value="130 trắng">
                             <input type="hidden" name="product_qty" value="1" min="1">
-                            <input type="hidden" name="product_img"
-                                value="https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8y6psofy1kyad">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134201-7ra0g-m8y6psofy1kyad">
                             <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                         </form>
                     </div>
@@ -377,13 +425,11 @@
 
             <div class="product-card" data-id="p9">
                 <div class="product-img">
-                    <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26fczqyqdgydf
-                        alt="Sản phẩm dưỡng da">
+                    <img src=https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26fczqyqdgydf alt="Sản phẩm dưỡng da">
                     <span class="badge discount">-46%</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Combo Simple Cho Da Nhạy Cảm - Nước Tẩy Trang (NTT), Sữa Rửa Mặt (SRM),
-                        Toner, Kem Dưỡng (KD)</h3>
+                    <h3 class="product-title">Combo Simple Cho Da Nhạy Cảm - Nước Tẩy Trang (NTT), Sữa Rửa Mặt (SRM), Toner, Kem Dưỡng (KD)</h3>
                     <div class="price">
                         <span class="old-price">240.000</span>
                         <span class="new-price">120.000đ</span>
@@ -393,18 +439,15 @@
                         <span class="location">Hồ Chí Minh</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart"
-                            onclick="openCartModal('Combo Simple Cho Da Nhạy Cảm - Nước Tẩy Trang (NTT), Sữa Rửa Mặt (SRM), Toner, Kem Dưỡng (KD)', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26fczqyqdgydf')">
+                        <button class="add-to-cart" onclick="openCartModal('Combo Simple Cho Da Nhạy Cảm - Nước Tẩy Trang (NTT), Sữa Rửa Mặt (SRM), Toner, Kem Dưỡng (KD)', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26fczqyqdgydf')">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
                         <form method="POST" action="checkout.php">
-                            <input type="hidden" name="product_name"
-                                value="Combo Simple Cho Da Nhạy Cảm - Nước Tẩy Trang (NTT), Sữa Rửa Mặt (SRM), Toner, Kem Dưỡng (KD)">
+                            <input type="hidden" name="product_name" value="Combo Simple Cho Da Nhạy Cảm - Nước Tẩy Trang (NTT), Sữa Rửa Mặt (SRM), Toner, Kem Dưỡng (KD)">
                             <input type="hidden" name="product_price" value="185000">
                             <input type="hidden" name="product_option" value="130 trắng">
                             <input type="hidden" name="product_qty" value="1" min="1">
-                            <input type="hidden" name="product_img"
-                                value="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26fczqyqdgydf">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7ras8-m26fczqyqdgydf">
                             <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                         </form>
                     </div>
@@ -413,13 +456,11 @@
 
             <div class="product-card" data-id="p10">
                 <div class="product-img">
-                    <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2"
-                        alt="Sản phẩm dưỡng da">
+                    <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2" alt="Sản phẩm dưỡng da">
                     <span class="badge discount">-34%</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-title">Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like
-                        4g - Mibebe</h3>
+                    <h3 class="product-title">Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like 4g - Mibebe</h3>
                     <div class="price">
                         <span class="old-price">400.000</span>
                         <span class="new-price">264.000đ</span>
@@ -429,18 +470,15 @@
                         <span class="location">Hồ Chí Minh</span>
                     </div>
                     <div class="product-actions">
-                        <button class="add-to-cart"
-                            onclick="openCartModal('Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like 4g - Mibebe', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2')">
+                        <button class="add-to-cart" onclick="openCartModal('Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like 4g - Mibebe', '185000', 'https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2')">
                             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
                         </button>
                         <form method="POST" action="checkout.php">
-                            <input type="hidden" name="product_name"
-                                value="Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like 4g - Mibebe">
+                            <input type="hidden" name="product_name" value="Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like 4g - Mibebe">
                             <input type="hidden" name="product_price" value="185000">
                             <input type="hidden" name="product_option" value="130 trắng">
                             <input type="hidden" name="product_qty" value="1" min="1">
-                            <input type="hidden" name="product_img"
-                                value="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2">
                             <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
                         </form>
                     </div>
@@ -472,12 +510,9 @@
                     <div class="modal-options">
                         <h4>Phân Loại</h4>
                         <div class="option-btn-group">
-                            <button type="button" class="option-btn active" onclick="selectOption(this)"
-                                data-img="assets/images/product1.jpg" data-price="120000">130 trắng</button>
-                            <button type="button" class="option-btn" onclick="selectOption(this)"
-                                data-img="assets/images/product2.jpg" data-price="130000">170 trắng</button>
-                            <button type="button" class="option-btn" onclick="selectOption(this)"
-                                data-img="assets/images/product3.jpg" data-price="125000">130 xanh da mụn</button>
+                            <button type="button" class="option-btn active" onclick="selectOption(this)" data-img="assets/images/product1.jpg" data-price="120000">130 trắng</button>
+                            <button type="button" class="option-btn" onclick="selectOption(this)" data-img="assets/images/product2.jpg" data-price="130000">170 trắng</button>
+                            <button type="button" class="option-btn" onclick="selectOption(this)" data-img="assets/images/product3.jpg" data-price="125000">130 xanh da mụn</button>
                         </div>
                     </div>
 
@@ -494,7 +529,6 @@
         </div>
 
         <script src="script.js"></script>
-
 </body>
 
 <footer class="footer">
