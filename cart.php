@@ -34,12 +34,12 @@ $total_price = 0;
     <link rel="stylesheet" href="styles.css"> <!-- Style cho trang giỏ hàng -->
 </head>
 <style>
-
     .h2 {
         display: flex;
         align-items: center;
         justify-content: center;
     }
+
     .cart-container {
         width: 80%;
         margin: 0 auto;
@@ -64,6 +64,37 @@ $total_price = 0;
     .cart-footer {
         margin-top: 20px;
         text-align: right;
+    }
+
+    .home-btn {
+        margin-top: 20px;
+        display: flex;
+        /* Sử dụng flexbox để các nút căn chỉnh trên cùng một hàng */
+        justify-content: space-between;
+        /* Căn chỉnh các nút đều, phân tán không gian giữa chúng */
+        align-items: center;
+        /* Căn giữa các nút theo chiều dọc */
+    }
+
+    .home-btn,
+    .checkout-btn,
+    .remove-btn {
+        padding: 10px 20px;
+        /* Khoảng cách trong nút */
+        background-color: #4CAF50;
+        /* Màu nền của nút */
+        color: white;
+        /* Màu chữ */
+        border: none;
+        /* Xóa border mặc định */
+        border-radius: 5px;
+        /* Bo góc cho nút */
+        cursor: pointer;
+        /* Con trỏ chuột khi hover */
+    }
+
+    .home-btn:hover {
+        background-color: #45a049;
     }
 
     .checkout-btn {
@@ -96,86 +127,87 @@ $total_price = 0;
     }
 
     .remove-btn {
-    color: red;
-    text-decoration: none;
-    font-weight: bold;
-    background-color: #ffcccc;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+        color: red;
+        text-decoration: none;
+        font-weight: bold;
+        background-color: #ffcccc;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-.remove-btn:hover {
-    background-color: #ff6666;
-}
-
+    .remove-btn:hover {
+        background-color: #ff6666;
+    }
 </style>
 
 <body>
-<form method="POST" action="remove_from_cart.php">
-    <div class="cart-container">
-    <h2><i class="fas fa-shopping-cart"></i> Giỏ hàng của bạn</h2>
+    <form method="POST" action="remove_from_cart.php">
+        <div class="cart-container">
+            <h2><i class="fas fa-shopping-cart"></i> Giỏ hàng của bạn</h2>
 
-        <?php if ($toast_message): ?>
-            <div class="toast-message"><?= $toast_message; ?></div>
-        <?php endif; ?>
+            <?php if ($toast_message): ?>
+                <div class="toast-message"><?= $toast_message; ?></div>
+            <?php endif; ?>
 
-        <table class="cart-table">
-            <thead>
-                <tr>
-                    <th><input type="checkbox" id="select-all" onclick="toggleSelectAll()"> Chọn tất cả</th> <!-- Checkbox Select All -->
-                    <th>Ảnh</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Phân loại</th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Tổng tiền</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (count($cart_items) > 0): ?>
-                    <?php foreach ($cart_items as $item): 
-                        $subtotal = $item['price'] * $item['quantity'];
-                        $total_price += $subtotal;
-                    ?>
-                        <tr>
-                            <td><input type="checkbox" name="selected_items[]" value="<?= $item['id']; ?>"></td> <!-- Checkbox cho mỗi sản phẩm -->
-                            <td><img src="<?= htmlspecialchars($item['product_image']); ?>" alt="<?= htmlspecialchars($item['product_name']); ?>" width="50" height="50"></td>
-                            <td><?= htmlspecialchars($item['product_name']); ?></td>
-                            <td><?= htmlspecialchars($item['product_option']); ?></td>
-                            <td><?= number_format($item['price'], 3, '.', '.'); ?></td>
-                            <td><?= $item['quantity']; ?></td>
-                            <td><?= number_format($subtotal, 3, '.', '.'); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
+            <table class="cart-table">
+                <thead>
                     <tr>
-                        <td colspan="7">Giỏ hàng của bạn hiện tại trống!</td>
+                        <th><input type="checkbox" id="select-all" onclick="toggleSelectAll()"> Chọn tất cả</th> <!-- Checkbox Select All -->
+                        <th>Ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Phân loại</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng tiền</th>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php if (count($cart_items) > 0): ?>
+                        <?php foreach ($cart_items as $item):
+                            $subtotal = $item['price'] * $item['quantity'];
+                            $total_price += $subtotal;
+                        ?>
+                            <tr>
+                                <td><input type="checkbox" name="selected_items[]" value="<?= $item['id']; ?>"></td> <!-- Checkbox cho mỗi sản phẩm -->
+                                <td><img src="<?= htmlspecialchars($item['product_image']); ?>" alt="<?= htmlspecialchars($item['product_name']); ?>" width="50" height="50"></td>
+                                <td><?= htmlspecialchars($item['product_name']); ?></td>
+                                <td><?= htmlspecialchars($item['product_option']); ?></td>
+                                <td><?= number_format($item['price'], 0, '.', '.'); ?></td>
+                                <td><?= $item['quantity']; ?></td>
+                                <td><?= number_format($subtotal, 0, '.', '.'); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="7">Giỏ hàng của bạn hiện tại trống!</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+            <button class="home-btn" onclick="window.location.href='home.php';">Quay về trang chủ</button>
 
-        <?php if (count($cart_items) > 0): ?>
-            <div class="cart-footer">
-                <p><strong>Tổng cộng: <?= number_format($total_price, 3, '.', '.') ; ?></strong></p>
-                <button type="submit" class="checkout-btn">Xóa đã chọn</button>
-                <a href="checkout.php" class="checkout-btn">Thanh toán</a>
-            </div>
-        <?php endif; ?>
-    </div>
-</form>
 
-<script>
-    // Toggle select/unselect all checkboxes
-    function toggleSelectAll() {
-        var selectAll = document.getElementById('select-all');
-        var checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
-        checkboxes.forEach(checkbox => {
-            checkbox.checked = selectAll.checked;
-        });
-    }
-</script>
+            <?php if (count($cart_items) > 0): ?>
+                <div class="cart-footer">
+                    <p><strong>Tổng cộng: <?= number_format($total_price, 0, '.', '.'); ?></strong></p>
+                    <button type="submit" class="checkout-btn">Xóa đã chọn</button>
+                    <a href="checkout.php" class="checkout-btn">Thanh toán</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </form>
+
+    <script>
+        // Toggle select/unselect all checkboxes
+        function toggleSelectAll() {
+            var selectAll = document.getElementById('select-all');
+            var checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAll.checked;
+            });
+        }
+    </script>
 
 </body>
 
