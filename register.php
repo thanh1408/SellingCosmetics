@@ -23,9 +23,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $conn->prepare("INSERT INTO users (username, phone, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $phone, $hashed_password);
-        $stmt->close();
+
+        if ($stmt) {
+            $stmt->bind_param("sss", $username, $phone, $hashed_password);
+            $stmt->execute();
+            $stmt->close();
+        } else {
+            echo "Lỗi khi chuẩn bị truy vấn: " . $conn->error;
+        }
+
         $conn->close();
+    } else {
+        foreach ($errors as $error) {
+            echo "<p style='color:red;'>$error</p>";
+        }
     }
 }
 ?>
