@@ -41,7 +41,7 @@ require_once 'connect.php';
             <div class="right">
                 <?php
                 if (isset($_SESSION['username'])) {
-                    echo "<span>Xin chào <strong>{$_SESSION['username']}</strong>, <a href='logout.php'>Đăng xuất</a></span>";
+                    echo "<span>Xin chào <strong>{$_SESSION['username']}</strong></span>";
                 } else {
                     echo '<a href="login.php">Bạn chưa đăng nhập</a>';
                 }
@@ -65,11 +65,45 @@ require_once 'connect.php';
                     <span class="cart-count"><?php echo $cart_count; ?></span>
                 </a>
 
-                <a href="#" class="bell-icon">
-                    <i class="fas fa-bell"></i>
-                    <span class="bell-count">0</span>
+
+                <a href="javascript:void(0)" class="setting-icon" onclick="toggleSettings()">
+                    <i class="fa-solid fa-gear"></i>
                 </a>
             </div>
+            <div class="settings-page">
+                <div class="settings-header">
+                    <i class="fa-solid fa-arrow-left" onclick="closeSettings()"></i>
+                    <h2>Thiết lập tài khoản</h2>
+                </div>
+
+                <div class="settings-section">
+                    <div class="settings-title">Tài khoản của tôi</div>
+                    <a href="account.php" class="settings-item">Tài khoản & Bảo mật</a>
+                    <a href="change_address.php" class="settings-item">Địa Chỉ</a>
+                    <a href="bank.php" class="settings-item">Tài khoản / Thẻ ngân hàng</a>
+                </div>
+
+
+                <div class="settings-section">
+                    <div class="settings-title">Cài đặt</div>
+                    <div class="settings-item">Cài đặt Chat</div>
+                    <a href="noti.php" class="settings-item">Cài đặt thông báo</a>
+                    <div class="settings-item">Cài đặt riêng tư</div>
+                    <div class="settings-item">
+                        Ngôn ngữ / Language
+                        <div class="subtext">Tiếng Việt</div>
+                    </div>
+                </div>
+
+                <div class="settings-logout">
+                    <a href="logout.php">
+                        <button>Đăng xuất</button>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
 
         </div>
         <!-- Navbar -->
@@ -142,30 +176,20 @@ require_once 'connect.php';
                 </li>
             </ul>
         </nav>
-        <!-- Product Card -->
         <!-- Product List -->
         <div class="product-list">
-            <div class="sort-bar">
-                <div class="sort-left">
-                    <span class="sort-label">Sắp xếp theo</span>
-                    <span class="sort-item active">Phổ biến</span>
-                    <span class="sort-item">Mới nhất</span>
-                    <span class="sort-item">Bán chạy</span>
-                    <div class="sort-price">
-                        Giá <i class="fas fa-chevron-down"></i>
-                        <div class="sort-price-dropdown">
-                            <div class="sort-price-option">Giá thấp đến cao</div>
-                            <div class="sort-price-option">Giá cao đến thấp</div>
-                        </div>
-                    </div>
+            <div class="slider-container">
+                <div class="slider">
+                    <img src="assets/images/hatomugy_banner.png" class="slide active">
+                    <img src="images/slide2.jpg" class="slide">
+                    <img src="images/slide3.jpg" class="slide">
                 </div>
-
-                <div class="sort-right">
-                    <span class="page-status">1/14</span>
-                    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                <div class="slider-buttons">
+                    <button class="prev">&#10094;</button>
+                    <button class="next">&#10095;</button>
                 </div>
             </div>
+            <div class="featured-title">Sản Phẩm Nổi Bật</div>
 
 
             <div class="product-card" data-id="p1">
@@ -484,98 +508,158 @@ require_once 'connect.php';
                     </div>
                 </div>
             </div>
+
+            <div class="product-card" data-id="p10">
+                <div class="product-img">
+                    <a href="product_detail.php?id=p10">
+                        <img src="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2" alt="Sản phẩm dưỡng da">
+                        <span class="badge discount">-34%</span>
+                    </a>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">
+                        <a href="product_detail.php?id=p10">
+                            Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like 4g - Mibebe
+                        </a>
+                    </h3>
+                    <div class="price">
+                        <span class="old-price">400.000</span>
+                        <span class="new-price">264.000đ</span>
+                    </div>
+                    <div class="extra-info">
+                        <span class="rating">⭐ 5.0 | Đã bán 9.3k</span>
+                        <span class="location">Hồ Chí Minh</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="product_detail.php?id=p10" class="view-detail">
+                            <i class="fas fa-eye"></i> Xem chi tiết
+                        </a>
+                        <form method="POST" action="checkout.php">
+                            <input type="hidden" name="product_name" value="Son Kem 3CE Velvet Lip Tint Taupe Speak Up Daffodil Bitter Hour Child Like 4g - Mibebe">
+                            <input type="hidden" name="product_price" value="185000">
+                            <input type="hidden" name="product_option" value="130 trắng">
+                            <input type="hidden" name="product_qty" value="1" min="1">
+                            <input type="hidden" name="product_img" value="https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lstqguefuimcd2">
+                            <button class="buy-now" type="submit"><i class="fas fa-credit-card"></i> Mua ngay</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
-        <!-- Modal Thêm vào giỏ hàng -->
-        <div class="cart-modal" id="cartModal">
-            <div class="cart-modal-content">
-                <span class="close-btn" onclick="closeCartModal()">&times;</span>
+    <!-- Modal Thêm vào giỏ hàng -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <span class="close-btn" onclick="closeCartModal()">&times;</span>
 
-                <!-- Gộp ảnh và thông tin sản phẩm vào 1 hàng -->
-                <div class="modal-header">
-                    <img src="assets/images/product1.jpg" alt="Sản phẩm" class="modal-img">
-                    <div class="product-info">
-                        <h3 id="modalTitle">Tên sản phẩm</h3>
-                        <p class="modal-price" id="modalPrice">Giá</p>
-                        <p class="modal-stock">Kho: 10.000</p>
+            <!-- Gộp ảnh và thông tin sản phẩm vào 1 hàng -->
+            <div class="modal-header">
+                <img src="assets/images/product1.jpg" alt="Sản phẩm" class="modal-img">
+                <div class="product-info">
+                    <h3 id="modalTitle">Tên sản phẩm</h3>
+                    <p class="modal-price" id="modalPrice">Giá</p>
+                    <p class="modal-stock">Kho: 10.000</p>
+                </div>
+            </div>
+
+            <form method="POST" action="add_to_cart.php" id="addToCartForm">
+                <input type="hidden" name="product_name" id="modalProductName">
+                <input type="hidden" name="product_price" id="modalProductPrice">
+                <input type="hidden" name="product_quantity" id="modalProductQty" value="1">
+                <input type="hidden" name="product_option" id="modalProductOption">
+
+                <div class="modal-options">
+                    <h4>Phân Loại</h4>
+                    <div class="option-btn-group">
+                        <button type="button" class="option-btn active" onclick="selectOption(this)" data-img="assets/images/product1.jpg" data-price="120000">130 trắng</button>
+                        <button type="button" class="option-btn" onclick="selectOption(this)" data-img="assets/images/product2.jpg" data-price="130000">170 trắng</button>
+                        <button type="button" class="option-btn" onclick="selectOption(this)" data-img="assets/images/product3.jpg" data-price="125000">130 xanh da mụn</button>
                     </div>
                 </div>
 
-                <form method="POST" action="add_to_cart.php" id="addToCartForm">
-                    <input type="hidden" name="product_name" id="modalProductName">
-                    <input type="hidden" name="product_price" id="modalProductPrice">
-                    <input type="hidden" name="product_quantity" id="modalProductQty" value="1">
-                    <input type="hidden" name="product_option" id="modalProductOption">
+                <div class="modal-quantity">
+                    <h4>Số lượng</h4>
+                    <button type="button" onclick="decreaseQty()">-</button>
+                    <input type="text" id="qtyInput" value="1">
+                    <button type="button" onclick="increaseQty()">+</button>
+                </div>
 
-                    <div class="modal-options">
-                        <h4>Phân Loại</h4>
-                        <div class="option-btn-group">
-                            <button type="button" class="option-btn active" onclick="selectOption(this)" data-img="assets/images/product1.jpg" data-price="120000">130 trắng</button>
-                            <button type="button" class="option-btn" onclick="selectOption(this)" data-img="assets/images/product2.jpg" data-price="130000">170 trắng</button>
-                            <button type="button" class="option-btn" onclick="selectOption(this)" data-img="assets/images/product3.jpg" data-price="125000">130 xanh da mụn</button>
-                        </div>
-                    </div>
-
-                    <div class="modal-quantity">
-                        <h4>Số lượng</h4>
-                        <button type="button" onclick="decreaseQty()">-</button>
-                        <input type="text" id="qtyInput" value="1">
-                        <button type="button" onclick="increaseQty()">+</button>
-                    </div>
-
-                    <button class="add-to-cart-btn">Thêm vào giỏ hàng</button>
-                </form>
-            </div>
+                <button class="add-to-cart-btn">Thêm vào giỏ hàng</button>
+            </form>
         </div>
+    </div>
 
-        <script src="script.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function toggleSettings() {
+            const panel = document.querySelector(".settings-page");
+            panel.classList.toggle("open"); // dùng class thay vì style
+        }
+
+        function closeSettings() {
+            document.querySelector(".settings-page").classList.remove("open");
+        }
+
+        // Ẩn khi click bên ngoài
+        document.addEventListener("click", function(event) {
+            const settingsPage = document.querySelector(".settings-page");
+            const settingsIcon = document.querySelector(".setting-icon");
+
+            if (!settingsPage.contains(event.target) && !settingsIcon.contains(event.target)) {
+                settingsPage.classList.remove("open");
+            }
+        });
+    </script>
+
 </body>
 
 <footer class="footer">
-            <div class="footer-container">
-                <div class="footer-column">
-                    <h4>CHĂM SÓC KHÁCH HÀNG</h4>
-                    <ul>
-                        <li><a href="#">Trung tâm trợ giúp</a></li>
-                        <li><a href="#">Hướng dẫn mua hàng</a></li>
-                        <li><a href="#">Chính sách đổi trả</a></li>
-                        <li><a href="#">Hướng dẫn thanh toán</a></li>
-                    </ul>
-                </div>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h4>CHĂM SÓC KHÁCH HÀNG</h4>
+            <ul>
+                <li><a href="#">Trung tâm trợ giúp</a></li>
+                <li><a href="#">Hướng dẫn mua hàng</a></li>
+                <li><a href="#">Chính sách đổi trả</a></li>
+                <li><a href="#">Hướng dẫn thanh toán</a></li>
+            </ul>
+        </div>
 
-                <div class="footer-column">
-                    <h4>VỀ CHÚNG TÔI</h4>
-                    <ul>
-                        <li><a href="#">Giới thiệu</a></li>
-                        <li><a href="#">Tuyển dụng</a></li>
-                        <li><a href="#">Điều khoản</a></li>
-                        <li><a href="#">Bảo mật</a></li>
-                    </ul>
-                </div>
+        <div class="footer-column">
+            <h4>VỀ CHÚNG TÔI</h4>
+            <ul>
+                <li><a href="#">Giới thiệu</a></li>
+                <li><a href="#">Tuyển dụng</a></li>
+                <li><a href="#">Điều khoản</a></li>
+                <li><a href="#">Bảo mật</a></li>
+            </ul>
+        </div>
 
-                <div class="footer-column">
-                    <h4>THEO DÕI CHÚNG TÔI</h4>
-                    <ul>
-                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
-                    </ul>
-                </div>
+        <div class="footer-column">
+            <h4>THEO DÕI CHÚNG TÔI</h4>
+            <ul>
+                <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+            </ul>
+        </div>
 
-                <div class="footer-column">
-                    <h4>PHƯƠNG THỨC THANH TOÁN</h4>
-                    <div class="payment-icons">
-                        <img src="assets/images/payment/visa.png" alt="Visa">
-                        <img src="assets/images/payment/mastercard.png" alt="MasterCard">
-                        <img src="assets/images/payment/cod.png" alt="COD">
-                        <img src="assets/images/payment/momo.png" alt="MoMo">
-                    </div>
-                </div>
+        <div class="footer-column">
+            <h4>PHƯƠNG THỨC THANH TOÁN</h4>
+            <div class="payment-icons">
+                <img src="assets/images/payment/visa.png" alt="Visa">
+                <img src="assets/images/payment/mastercard.png" alt="MasterCard">
+                <img src="assets/images/payment/cod.png" alt="COD">
+                <img src="assets/images/payment/momo.png" alt="MoMo">
             </div>
+        </div>
+    </div>
 
-            <div class="footer-bottom">
-                <p>&copy; 2025 Mỹ Phẩm 563. Địa chỉ: 123 Trần Duy Hưng, Hà Nội. ĐKKD: 0123456789.</p>
-            </div>
-        </footer>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Mỹ Phẩm 563. Địa chỉ: 123 Trần Duy Hưng, Hà Nội. ĐKKD: 0123456789.</p>
+    </div>
+</footer>
 
 </html>
